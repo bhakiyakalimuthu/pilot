@@ -1,11 +1,37 @@
 package app
 
-type Request struct {
+import (
+	"github.com/google/uuid"
+)
+type User struct {
+	Name string `json:"name,omitempty"`
+	PhoneNumber string `json:"phoneNumber,omitempty"`
+	Address string `json:"address,omitempty"`
+	Age int64 `json:"age,omitempty"`
+	DOB string `json:"dob,omitempty"`
+	Sex string `json:"sex,omitempty"`
+	Height int64 `json:"height,omitempty"`
+	Weight int64 `json:"weight,omitempty"`
+}
+
+type UserModel struct {
+	id uuid.UUID `db:"id"`
+	Name string `db:"name,omitempty"`
+	PhoneNumber string `db:"phone_number"`
+	Address string `db:"address"`
+	Age int64 `db:"age"`
+	DOB string `db:"dob"`
+	Sex string `db:"sex"`
+	Height int64 `db:"height"`
+	Weight int64 `db:"weight"`
+}
+
+type ProfileRequest struct {
 	PatentID                  string    `json:"patentId"`
 	DemographicFactor         DemoFac   `json:"demographicFactor"`
 	DiagnosedWithDiabetes     bool      `json:"diagnosedWithDiabetes"`
-	DiagnosisProfile          DiagProf  `json:"diagonisisProfile"`
-	TreatmentVaraibles        TreatVar  `json:"treatmentVariables"`
+	DiagnosisProfile          DiagProf `json:"diagnosisProfile"`
+	TreatmentVariables        TreatVar  `json:"treatmentVariables"`
 	ClinicianReportedOutcomes CliRptOut `json:"clinicReportedOutcomes"`
 }
 type DemoFac struct {

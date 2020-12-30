@@ -11,11 +11,11 @@ import (
 func main()  {
 
 	r := chi.NewRouter()
-	m := make(map[string]interface{},0)
-	store:= app.NewMemoryStore(zap.L(),m)
+
+	store:= app.NewMemoryStore(zap.L())
 	svc := app.NewService(zap.L(),store)
 	_ = app.NewController(zap.L(),svc).SetupRouter(r)
-	http.ListenAndServe(":9090",r)
+	http.ListenAndServe(":8080",r)
 }
 
 
