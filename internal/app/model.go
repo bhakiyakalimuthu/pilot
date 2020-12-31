@@ -3,34 +3,35 @@ package app
 import (
 	"github.com/google/uuid"
 )
+
 type User struct {
-	Name string `json:"name,omitempty"`
+	Name        string `json:"name,omitempty"`
 	PhoneNumber string `json:"phoneNumber,omitempty"`
-	Address string `json:"address,omitempty"`
-	Age int64 `json:"age,omitempty"`
-	DOB string `json:"dob,omitempty"`
-	Sex string `json:"sex,omitempty"`
-	Height int64 `json:"height,omitempty"`
-	Weight int64 `json:"weight,omitempty"`
+	Address     string `json:"address,omitempty"`
+	Age         int64  `json:"age,omitempty"`
+	DOB         string `json:"dob,omitempty"`
+	Sex         string `json:"sex,omitempty"`
+	Height      int64  `json:"height,omitempty"`
+	Weight      int64  `json:"weight,omitempty"`
 }
 
 type UserModel struct {
-	id uuid.UUID `db:"id"`
-	Name string `db:"name,omitempty"`
-	PhoneNumber string `db:"phone_number"`
-	Address string `db:"address"`
-	Age int64 `db:"age"`
-	DOB string `db:"dob"`
-	Sex string `db:"sex"`
-	Height int64 `db:"height"`
-	Weight int64 `db:"weight"`
+	id          uuid.UUID `db:"id"`
+	Name        string    `db:"name,omitempty"`
+	PhoneNumber string    `db:"phone_number"`
+	Address     string    `db:"address"`
+	Age         int64     `db:"age"`
+	DOB         string    `db:"dob"`
+	Sex         string    `db:"sex"`
+	Height      int64     `db:"height"`
+	Weight      int64     `db:"weight"`
 }
 
 type ProfileRequest struct {
 	PatentID                  string    `json:"patentId"`
 	DemographicFactor         DemoFac   `json:"demographicFactor"`
 	DiagnosedWithDiabetes     bool      `json:"diagnosedWithDiabetes"`
-	DiagnosisProfile          DiagProf `json:"diagnosisProfile"`
+	DiagnosisProfile          DiagProf  `json:"diagnosisProfile"`
 	TreatmentVariables        TreatVar  `json:"treatmentVariables"`
 	ClinicianReportedOutcomes CliRptOut `json:"clinicReportedOutcomes"`
 }
@@ -109,4 +110,33 @@ type AcutEvnt struct {
 	LimbAmutationLevel   int64 `json:"limbAmutationLevel"`
 }
 type ChronicComplic struct {
+	VisualImpairment         int64 `josn:"visualImpairment"`
+	VisualAcuity             int64 `json:"visualAcuity"`
+	MeasurementMehtod        int64 `json:"measurementMehtod"`
+	NonproflDiabRetinopathy  bool  `json:"nonproflDiabRetinopathy"`
+	ProflDiabRetinopathy     bool  `json:"proflDiabRetinopathy"`
+	UnspecDiabRetinopathy    bool  `json:"unspecDiabRetinopathy"`
+	MacularEdema             bool  `json:"macularEdema"`
+	Other                    bool  `json:"other"`
+	NosightThreaten          bool  `json:"nosightThreaten"`
+	UnknownsightThreaten     bool  `json:"unknownSightThreaten"`
+	AutonomicNeuropathy      int64 `json:"autonomicNeuropathy"`
+	PeripheralNeuropathy     int64 `json:"peripheralNeuropathy"`
+	PeripherNeuropSympt      int64 `json:"peripherNeuropSympt"`
+	CharcotFoot              int64 `json:"charcotFoot"`
+	LowerLimbUlcer           int64 `json:"lowerLimbUlcer"`
+	LLUSeverity              int64 `json:"lluSeverity"`
+	SevereStageDiagnosed     int64 `json:"severeStageDiagnosed"`
+	PeripheralArteryDisease  int64 `json:"peripheralArteryDisease"`
+	PeripheralArterySymptoms int64 `json:"peripheralArterySymptoms"`
+	IschemicHeartDisease     int64 `json:"ischemicHeartDisease"`
+	HeartFailure             int64 `josn:"heartFailure"`
+	HeartFailureStage        int64 `json:"heartFailureStage"`
+	EGFR                     int64 `json:"egfr"`
+	UrinaryACR               int64 `json:"urinaryACR"`
+	Dialysis                 int64 `json:"dialysis"`
+	CerebrovascularDisease   int64 `json:"cerebrovascularDisease"`
+	PeriodontalHealth        int64 `json:"periodontalHealth"`
+	ErectileDysfunction      int64 `json:"erectileDysfunction"`
+	Lipodystrophy            int64 `json:"lipodystrophy"`
 }
