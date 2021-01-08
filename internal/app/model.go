@@ -2,6 +2,7 @@ package app
 
 import (
 	"github.com/google/uuid"
+	"time"
 )
 
 type User struct {
@@ -16,19 +17,21 @@ type User struct {
 }
 
 type UserModel struct {
-	id          uuid.UUID `db:"id"`
-	Name        string    `db:"name,omitempty"`
-	PhoneNumber string    `db:"phone_number"`
-	Address     string    `db:"address"`
-	Age         int64     `db:"age"`
-	DOB         string    `db:"dob"`
-	Sex         string    `db:"sex"`
-	Height      int64     `db:"height"`
-	Weight      int64     `db:"weight"`
+	ID uuid.UUID `db:"id"`
+	ShortID string `db:"short_id"`
+	Name string `db:"name"`
+	PhoneNumber string `db:"phone_number"`
+	EmailID string `db:"email_id"`
+	Address string `db:"address"`
+	Age int64 `db:"age"`
+	DOB string `db:"dob"`
+	Sex string `db:"sex"`
+	Height int64 `db:"height"`
+	Weight int64 `db:"weight"`
 }
 
-type ProfileRequest struct {
-	PatentID                  string    `json:"patentId"`
+type MedicalData struct {
+	PatientID                 string    `json:"patientId"`
 	DemographicFactor         DemoFac   `json:"demographicFactor"`
 	DiagnosedWithDiabetes     bool      `json:"diagnosedWithDiabetes"`
 	DiagnosisProfile          DiagProf  `json:"diagnosisProfile"`
@@ -139,4 +142,20 @@ type ChronicComplic struct {
 	PeriodontalHealth        int64 `json:"periodontalHealth"`
 	ErectileDysfunction      int64 `json:"erectileDysfunction"`
 	Lipodystrophy            int64 `json:"lipodystrophy"`
+}
+
+
+type MedicalDataModel struct {
+	ShortID                  string    `db:"short_id"`
+	CreatedAt time.Time  `db:"created_at"`
+	UpdatedAt time.Time `db:"updated_at"`
+	Year int    `db:"year"`
+	Sex  string `db:"sex"`
+	// DiagnosedWithDiabetes     bool      `db:"diagnosed_with_diabetes"`
+	// DiabTypeIndic        int64  `json:"diab_type_indic"`
+	// DiabeticDiagnoseYear int64  `json:"diabetic_diagnoseyear"`
+	// Comorbidities        Comorb `json:"comorbidities"`
+	// DiagnosisProfile          DiagProf `json:"diagnosisProfile"`
+	// TreatmentVariables        TreatVar  `json:"treatmentVariables"`
+	// ClinicianReportedOutcomes CliRptOut `json:"clinicReportedOutcomes"`
 }

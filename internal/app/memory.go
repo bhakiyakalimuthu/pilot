@@ -14,6 +14,10 @@ type  MemoryStore struct {
 	data map[string]*UserModel
 }
 
+func (m *MemoryStore) CreateMedicalData(ctx context.Context, model *MedicalDataModel) error {
+	panic("implement me")
+}
+
 func NewMemoryStore(logger *zap.Logger) *MemoryStore {
 	data := make(map[string]*UserModel,0)
 	return &MemoryStore{
@@ -22,10 +26,10 @@ func NewMemoryStore(logger *zap.Logger) *MemoryStore {
 	}
 }
 
-func (m *MemoryStore)CreateProfile(ctx context.Context, model *UserModel) error{
-	m.data[model.id.String()]= model
+func (m *MemoryStore) CreateUser(ctx context.Context, model *UserModel) error{
+	m.data[model.ID.String()]= model
 	return nil
 }
-func (m *MemoryStore ) GetProfile(ctx context.Context, id string) (*UserModel,error){
+func (m *MemoryStore ) GetUser(ctx context.Context, id string) (*UserModel,error){
 	return m.data[id],nil
 }

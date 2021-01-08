@@ -24,7 +24,7 @@ func (c *Controller) SetupRouter( router chi.Router)  chi.Router {
 	router.Route("/profile", func(r chi.Router) {
 		r.Post("/create",c.Create)
 		r.Get("/{id}",c.Get)
-		// r.Post("/update",c.updata)
+		r.Post("/med-data/create",c.CreateMedicalData)
 	})
 	return router
 }
@@ -39,9 +39,9 @@ func (c *Controller) Create(w http.ResponseWriter,r *http.Request)  {
 		 w.Write([]byte("Invalid request data"))
 		 return
 	}
-	if err := c.service.CreateProfile(r.Context(), &u);err !=nil{
+	if err := c.service.CreateUser(r.Context(), &u);err !=nil{
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Unable to process"))
+		w.Write([]byte("Unable to create profile"))
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
@@ -57,7 +57,7 @@ func (c *Controller) Get(w http.ResponseWriter,r *http.Request)  {
 		w.Write([]byte("Invalid request param"))
 		return
 	}
-	d,err := c.service.GetProfile(r.Context(), id)
+	d,err := c.service.GetUser(r.Context(), id)
 	if err !=nil{
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Unable to process"))
@@ -72,4 +72,20 @@ func (c *Controller) Get(w http.ResponseWriter,r *http.Request)  {
 	return
 }
 
-
+func (c *Controller) CreateMedicalData(w http.ResponseWriter,r *http.Request)  {
+	fmt.Println("Successfully received create request")
+	var d MedicalData
+	if err := json.NewDecoder(r.Body).Decode(&d);err !=nil {
+		fmt.Println("invalid request body",zap.Error(err))
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Invalid request data"))
+		return
+	}
+	if err := c.service.CreateMedicalData(r.Context(), &d);err !=nil{
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Unable to create profile"))
+		return
+	}
+	w.WriteHeader(http.StatusCreated)
+	return
+}
