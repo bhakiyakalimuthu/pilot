@@ -8,6 +8,7 @@ import (
 type User struct {
 	Name        string `json:"name,omitempty"`
 	PhoneNumber string `json:"phoneNumber,omitempty"`
+	EmailID string `db:"emailID,omitempty"`
 	Address     string `json:"address,omitempty"`
 	Age         int64  `json:"age,omitempty"`
 	DOB         string `json:"dob,omitempty"`
